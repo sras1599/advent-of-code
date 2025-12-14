@@ -80,5 +80,5 @@ func solvePart2() {
 		}
 	}
 
-	fmt.Printf("Number of times dial crossed position 0 during or after a rotation: %d\n", timesAtZero)
+	fmt.Printf("Number of times dial was at position 0 during or after a rotation: %d\n", timesAtZero)
 }
