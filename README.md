@@ -1,0 +1,1 @@
+This repository contains the solutions to [Advent of Code](https://adventofcode.com/) problems that I have attempted over the years. There is a folder for each year and an year's folder contains sub-folders for each day's problems. Each sub-folder has its own readme file where I write down my thoughts as I work towards the solution.
