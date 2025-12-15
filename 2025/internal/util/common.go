@@ -26,8 +26,14 @@ func ReadLines(filename string) ([]string, error) {
 }
 
 // generic function to read a file called "input_{part}.txt" in the current directory
-func ReadInputFile() ([]string, error) {
-	return ReadLines("input.txt")
+func ReadInputFile() []string {
+	lines, err := ReadLines("input.txt")
+
+	if err != nil {
+		panic(err)
+	}
+
+	return lines
 }
 
 // prompts the user to select which part they want the solution for

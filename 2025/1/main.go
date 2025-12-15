@@ -20,11 +20,7 @@ func solvePart1() {
 	dial := util.NewDial()
 	timesAtZero := 0
 
-	lines, err := util.ReadInputFile()
-	if err != nil {
-		panic(err)
-	}
-
+	lines := util.ReadInputFile()
 	for _, line := range lines {
 		direction, amount := util.ParseRotation(line)
 		dialPos := 0
@@ -47,11 +43,7 @@ func solvePart2() {
 	dial := util.NewDial()
 	timesAtZero := 0
 
-	lines, err := util.ReadInputFile()
-	if err != nil {
-		panic(err)
-	}
-
+	lines := util.ReadInputFile()
 	for _, line := range lines {
 		direction, amount := util.ParseRotation(line)
 
