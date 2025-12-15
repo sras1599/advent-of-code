@@ -31,6 +31,14 @@ func (d *Dial) RotateLeft(amount int) int {
 	return d.curPos
 }
 
+func (d *Dial) GetRange() int {
+	return d.Range
+}
+
+func (d *Dial) GetCurrentPosition() int {
+	return d.curPos
+}
+
 // split the line so that we get the direction of the rotation (L or R) and the amount to rotate
 func ParseRotation(line string) (string, int) {
 	direction := string(line[0])
@@ -39,12 +47,4 @@ func ParseRotation(line string) (string, int) {
 	fmt.Sscanf(line[1:], "%d", &amount)
 
 	return direction, amount
-}
-
-func (d *Dial) GetRange() int {
-	return d.Range
-}
-
-func (d *Dial) GetCurrentPosition() int {
-	return d.curPos
 }

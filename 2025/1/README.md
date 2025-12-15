@@ -1,3 +1,5 @@
+https://adventofcode.com/2025/day/1
+
 We can create a struct to represent the dial. It can have the following properties:
 - Start: The lowest value of the dial
 - End: The highest point of the dial
