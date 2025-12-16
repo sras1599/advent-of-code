@@ -1,6 +1,7 @@
 package util
 
 import (
+	"fmt"
 	"slices"
 	"strconv"
 	"strings"
@@ -36,31 +37,25 @@ func ParseInputDay3() []BatteryBank {
 }
 
 func (b *BatteryBank) FindLargestPossibleJoltage(numDigits int) int {
-	appendAfter := 0
-	prepend := false
+	resultPrefix := ""
 	resultStr := ""
 	searchSpace := b.joltageRatings
 
-	for len(resultStr) != numDigits {
-		numDigitsLeft := numDigits - len(resultStr)
+	for len(resultPrefix+resultStr) != numDigits {
+		numDigitsLeft := numDigits - len(resultPrefix+resultStr)
 		max := slices.Max(searchSpace)
 		idx := slices.Index(searchSpace, max)
+
+		fmt.Println("space:", intArrayToString(searchSpace), "prefix:", resultPrefix, "result:", resultStr)
 
 		if (idx == (len(searchSpace) - 1)) || idx == 0 {
 			searchSpace = slices.Delete(searchSpace, idx, idx+1)
 			result := strconv.Itoa(max)
 
-			if appendAfter != 0 {
-				firstChunk := resultStr[:appendAfter]
-				resultStr = firstChunk + result + resultStr[appendAfter:]
+			if idx == 0 {
+				resultPrefix += result
 			} else {
-				resultStr = strconv.Itoa(max) + resultStr
-			}
-
-			if idx != 0 {
-				prepend = true
-			} else {
-				appendAfter++
+				resultStr = result + resultStr
 			}
 		} else {
 			elemsToRight := searchSpace[idx:]
@@ -68,15 +63,7 @@ func (b *BatteryBank) FindLargestPossibleJoltage(numDigits int) int {
 
 			if l <= numDigitsLeft {
 				chunk := intArrayToString(elemsToRight)
-
-				if appendAfter != 0 {
-					firstChunk := resultStr[:appendAfter]
-					resultStr = firstChunk + chunk + resultStr[appendAfter:]
-				} else if prepend {
-					resultStr = chunk + resultStr
-				} else {
-					resultStr += chunk
-				}
+				resultStr = chunk + resultStr
 
 				searchSpace = searchSpace[:idx]
 			} else {
@@ -85,7 +72,7 @@ func (b *BatteryBank) FindLargestPossibleJoltage(numDigits int) int {
 		}
 	}
 
-	result, _ := strconv.Atoi(resultStr)
+	result, _ := strconv.Atoi(resultPrefix + resultStr)
 	return result
 }
 
