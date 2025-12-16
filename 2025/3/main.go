@@ -20,7 +20,7 @@ func solvePart1() {
 	total := 0
 
 	for _, bank := range banks {
-		total += bank.FindLargestPossibleJoltage2(2)
+		total += bank.FindLargestPossibleJoltage(2)
 	}
 
 	fmt.Println("Total output joltage:", total)
@@ -31,7 +31,7 @@ func solvePart2() {
 	total := 0
 
 	for _, bank := range banks {
-		total += bank.FindLargestPossibleJoltage2(12)
+		total += bank.FindLargestPossibleJoltage(12)
 	}
 
 	fmt.Println("Total output joltage:", total)

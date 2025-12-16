@@ -10,30 +10,6 @@ type BatteryBank struct {
 	joltageRatings []int
 }
 
-func (b *BatteryBank) FindLargestPossibleJoltage() int {
-	var highest, highestIdx, left, right int
-
-	highest = slices.Max(b.joltageRatings)
-	highestIdx = slices.Index(b.joltageRatings, highest)
-
-	if highestIdx == (len(b.joltageRatings) - 1) {
-		searchSpace := b.joltageRatings[:(highestIdx)]
-
-		right = highest
-		left = slices.Max(searchSpace)
-	} else {
-		searchSpace := b.joltageRatings[(highestIdx + 1):]
-
-		left = highest
-		right = slices.Max(searchSpace)
-	}
-
-	resultStr := strconv.Itoa(left) + strconv.Itoa(right)
-	result, _ := strconv.Atoi(resultStr)
-
-	return result
-}
-
 func newBatteryBank(joltageRatings []int) BatteryBank {
 	bank := BatteryBank{joltageRatings: joltageRatings}
 
@@ -59,7 +35,7 @@ func ParseInputDay3() []BatteryBank {
 	return banks
 }
 
-func (b *BatteryBank) FindLargestPossibleJoltage2(numDigits int) int {
+func (b *BatteryBank) FindLargestPossibleJoltage(numDigits int) int {
 	appendAfter := 0
 	prepend := false
 	resultStr := ""
