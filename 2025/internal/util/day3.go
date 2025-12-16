@@ -1,7 +1,6 @@
 package util
 
 import (
-	"fmt"
 	"slices"
 	"strconv"
 	"strings"
@@ -45,8 +44,6 @@ func (b *BatteryBank) FindLargestPossibleJoltage(numDigits int) int {
 		numDigitsLeft := numDigits - len(resultPrefix+resultStr)
 		max := slices.Max(searchSpace)
 		idx := slices.Index(searchSpace, max)
-
-		fmt.Println("space:", intArrayToString(searchSpace), "prefix:", resultPrefix, "result:", resultStr)
 
 		if (idx == (len(searchSpace) - 1)) || idx == 0 {
 			searchSpace = slices.Delete(searchSpace, idx, idx+1)
