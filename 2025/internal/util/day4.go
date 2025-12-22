@@ -9,16 +9,16 @@ const ROLL = "@"
 
 type PaperRolls []string
 
-type RollGrid struct {
+type rollGrid struct {
 	above   PaperRolls
 	current PaperRolls
 	below   PaperRolls
 }
 
-type RollGrids []RollGrid
+type rollGrids []rollGrid
 
-func NewRollGrids(rolls []PaperRolls) RollGrids {
-	grids := make([]RollGrid, 0)
+func NewRollGrids(rolls []PaperRolls) rollGrids {
+	grids := make([]rollGrid, 0)
 
 	for idx, roll := range rolls {
 		var above, below []string
@@ -35,14 +35,14 @@ func NewRollGrids(rolls []PaperRolls) RollGrids {
 			below = rolls[idx+1]
 		}
 
-		grid := RollGrid{current: roll, above: above, below: below}
+		grid := rollGrid{current: roll, above: above, below: below}
 		grids = append(grids, grid)
 	}
 
 	return grids
 }
 
-func (g *RollGrid) CountAccessibleRolls() (int, PaperRolls) {
+func (g *rollGrid) CountAccessibleRolls() (int, PaperRolls) {
 	count := 0
 	l := len(g.current)
 	var newGrid strings.Builder
@@ -72,7 +72,7 @@ func (g *RollGrid) CountAccessibleRolls() (int, PaperRolls) {
 	return count, strings.Split(newGrid.String(), "")
 }
 
-func ParseInputDay4() RollGrids {
+func ParseInputDay4() rollGrids {
 	lines := ReadInputFile()
 	rolls := make([]PaperRolls, 0)
 

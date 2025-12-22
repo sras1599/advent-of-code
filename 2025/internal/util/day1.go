@@ -2,26 +2,26 @@ package util
 
 import "fmt"
 
-type Dial struct {
+type dial struct {
 	Start, End, curPos, Range int
 }
 
-func NewDial() *Dial {
-	d := &Dial{Start: 0, End: 99, curPos: 50}
+func NewDial() *dial {
+	d := &dial{Start: 0, End: 99, curPos: 50}
 	d.Range = (d.End - d.Start) + 1
 
 	return d
 }
 
 // rotates the dial to the right and returns the current position
-func (d *Dial) RotateRight(amount int) int {
+func (d *dial) RotateRight(amount int) int {
 	d.curPos = (d.curPos + amount) % d.Range
 
 	return d.curPos
 }
 
 // rotates the dial to the left and returns the current position
-func (d *Dial) RotateLeft(amount int) int {
+func (d *dial) RotateLeft(amount int) int {
 	d.curPos -= amount
 
 	if d.curPos < 0 {
@@ -31,11 +31,11 @@ func (d *Dial) RotateLeft(amount int) int {
 	return d.curPos
 }
 
-func (d *Dial) GetRange() int {
+func (d *dial) GetRange() int {
 	return d.Range
 }
 
-func (d *Dial) GetCurrentPosition() int {
+func (d *dial) GetCurrentPosition() int {
 	return d.curPos
 }
 

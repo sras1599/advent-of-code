@@ -6,7 +6,7 @@ import (
 	"sync/atomic"
 )
 
-type IDRange struct {
+type idRange struct {
 	start, end int
 
 	// the result we want
@@ -17,8 +17,8 @@ type IDRange struct {
 	eligibibleChunkSizes map[string][]int
 }
 
-func newIDRange(start int, end int) *IDRange {
-	Range := &IDRange{
+func newIDRange(start int, end int) *idRange {
+	Range := &idRange{
 		start:                start,
 		end:                  end,
 		sumOfInvalidIDs:      0,
@@ -29,7 +29,7 @@ func newIDRange(start int, end int) *IDRange {
 	return Range
 }
 
-func (r *IDRange) getUniqueLengths() []int {
+func (r *idRange) getUniqueLengths() []int {
 	lengths := make(map[int]bool)
 
 	for i := r.start; i <= r.end; i++ {
@@ -44,7 +44,7 @@ func (r *IDRange) getUniqueLengths() []int {
 	return result
 }
 
-func (r *IDRange) PopulateChunkSizes() {
+func (r *idRange) PopulateChunkSizes() {
 	uniqueLengths := r.getUniqueLengths()
 
 	for _, len := range uniqueLengths {
@@ -53,7 +53,7 @@ func (r *IDRange) PopulateChunkSizes() {
 	}
 }
 
-func (r *IDRange) processNumber(num int, part int) {
+func (r *idRange) processNumber(num int, part int) {
 	stringifiedNumber := strconv.Itoa(num)
 	numLen := len(stringifiedNumber)
 
@@ -82,7 +82,7 @@ func (r *IDRange) processNumber(num int, part int) {
 	}
 }
 
-func (r *IDRange) ProcessRange(part int) int64 {
+func (r *idRange) ProcessRange(part int) int64 {
 	for i := r.start; i <= r.end; i++ {
 		r.processNumber(i, part)
 	}
@@ -90,12 +90,12 @@ func (r *IDRange) ProcessRange(part int) int64 {
 	return r.sumOfInvalidIDs
 }
 
-func (r *IDRange) GetSumOfInvalidIDs() int64 {
+func (r *idRange) GetSumOfInvalidIDs() int64 {
 	return r.sumOfInvalidIDs
 }
 
-func GetIDRanges(line string) []*IDRange {
-	ranges := []*IDRange{}
+func GetIDRanges(line string) []*idRange {
+	ranges := []*idRange{}
 
 	for rangeStr := range strings.SplitSeq(line, ",") {
 		parts := strings.SplitN(rangeStr, "-", 2)

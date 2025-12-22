@@ -6,19 +6,19 @@ import (
 	"strings"
 )
 
-type BatteryBank struct {
+type batteryBank struct {
 	joltageRatings []int
 }
 
-func newBatteryBank(joltageRatings []int) BatteryBank {
-	bank := BatteryBank{joltageRatings: joltageRatings}
+func newBatteryBank(joltageRatings []int) batteryBank {
+	bank := batteryBank{joltageRatings: joltageRatings}
 
 	return bank
 }
 
-func ParseInputDay3() []BatteryBank {
+func ParseInputDay3() []batteryBank {
 	lines := ReadInputFile()
-	banks := make([]BatteryBank, 0)
+	banks := make([]batteryBank, 0)
 
 	for _, line := range lines {
 		joltageRatings := make([]int, 0)
@@ -35,7 +35,7 @@ func ParseInputDay3() []BatteryBank {
 	return banks
 }
 
-func (b *BatteryBank) FindLargestPossibleJoltage(numDigits int) int {
+func (b *batteryBank) FindLargestPossibleJoltage(numDigits int) int {
 	resultPrefix := ""
 	resultStr := ""
 	searchSpace := b.joltageRatings
