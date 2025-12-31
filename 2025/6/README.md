@@ -6,7 +6,7 @@ This one's a bit different, as the main "challenge" here seems to be parsing the
 Add the solutions of all individual math problems and return the result
 
 ### Part 2
-
+Same thing, but do it in Cephalopod math
 
 ### Parsing the input
 Splitting each line by space gets us the stringified numbers, except the last line where we get the operators. We can create a struct which stores both these numbers and the operators as separate fields. We can then create a method on the struct to solve a particular problem. We can then use another struct which is basically a collection of these individual problems and implement a `solve` method which can aggregate these results together and give us the final output.
