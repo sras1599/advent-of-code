@@ -18,7 +18,7 @@ const ISPLITTER = -1
 type manifold [][]string
 type weightedManifold [][]int
 
-func parseInput() manifold {
+func parseInputDay7() manifold {
 	lines := ReadInputFile()
 	output := make(manifold, 0)
 
@@ -30,7 +30,7 @@ func parseInput() manifold {
 }
 
 func CountTachyonSplits() int {
-	lines := parseInput()
+	lines := parseInputDay7()
 	splits := 0
 
 	// handle the start
@@ -62,7 +62,7 @@ func CountTachyonSplits() int {
 }
 
 func ProcessAllTimelines() int {
-	manifold := transformManifold(parseInput())
+	manifold := transformManifold(parseInputDay7())
 	l := len(manifold)
 
 	// handle the start

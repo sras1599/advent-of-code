@@ -1,0 +1,112 @@
+#!/bin/bash
+
+# Bootstrap script for creating a new Advent of Code 2025 day solution
+
+# Check if a day number was provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 <day_number>"
+    echo "Example: $0 8"
+    exit 1
+fi
+
+DAY=$1
+
+# Validate that day is a number between 1 and 25
+if ! [[ "$DAY" =~ ^[0-9]+$ ]] || [ "$DAY" -lt 1 ] || [ "$DAY" -gt 25 ]; then
+    echo "Error: Day must be a number between 1 and 25"
+    exit 1
+fi
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Create day folder
+DAY_FOLDER="$PROJECT_ROOT/$DAY"
+if [ -d "$DAY_FOLDER" ]; then
+    echo "Error: Day $DAY folder already exists at $DAY_FOLDER"
+    exit 1
+fi
+
+mkdir -p "$DAY_FOLDER"
+echo "✓ Created folder: $DAY_FOLDER"
+
+# Create main.go
+cat > "$DAY_FOLDER/main.go" << 'EOF'
+package main
+
+import (
+	"aoc/internal/util"
+	"fmt"
+)
+
+func main() {
+	part := util.ChoosePart()
+
+	if part == 1 {
+		solvePart1()
+	} else {
+		solvePart2()
+	}
+}
+
+func solvePart1() {
+	lines := util.ReadInputFile()
+	result := 0
+
+	for _, line := range lines {
+		_ = line // TODO: process each line
+	}
+
+	fmt.Printf("Part 1 result: %d\n", result)
+}
+
+func solvePart2() {
+	lines := util.ReadInputFile()
+	result := 0
+
+	for _, line := range lines {
+		_ = line // TODO: process each line
+	}
+
+	fmt.Printf("Part 2 result: %d\n", result)
+}
+EOF
+echo "✓ Created file: $DAY_FOLDER/main.go"
+
+# Create README.md
+cat > "$DAY_FOLDER/README.md" << EOF
+# Day $DAY
+
+https://adventofcode.com/2025/day/$DAY
+
+## Part 1
+
+TODO: Add notes for part 1
+
+## Part 2
+
+TODO: Add notes for part 2
+EOF
+echo "✓ Created file: $DAY_FOLDER/README.md"
+
+# Create dayN.go in internal/util/
+UTIL_FILE="$PROJECT_ROOT/internal/util/day$DAY.go"
+if [ -f "$UTIL_FILE" ]; then
+    echo "Warning: $UTIL_FILE already exists, skipping creation"
+else
+    cat > "$UTIL_FILE" << 'EOF'
+package util
+
+// TODO: Add helper functions for this day
+EOF
+    echo "✓ Created file: $UTIL_FILE"
+fi
+
+echo ""
+echo "✅ Successfully bootstrapped Day $DAY!"
+echo "   - Folder: $DAY_FOLDER"
+echo "   - Main solution file: $DAY_FOLDER/main.go"
+echo "   - README: $DAY_FOLDER/README.md"
+echo "   - Input file: $DAY_FOLDER/input.txt (add input here)"
+echo "   - Utility file: $UTIL_FILE (add helper functions here)"
