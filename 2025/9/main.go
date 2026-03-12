@@ -2,7 +2,6 @@ package main
 
 import (
 	"aoc/internal/util"
-	"fmt"
 )
 
 func main() {
@@ -20,12 +19,5 @@ func solvePart1() {
 }
 
 func solvePart2() {
-	lines := util.ReadInputFile()
-	result := 0
-
-	for _, line := range lines {
-		_ = line // TODO: process each line
-	}
-
-	fmt.Printf("Part 2 result: %d\n", result)
+	util.GetLargestRectangleUsingRedAndGreenTiles()
 }
