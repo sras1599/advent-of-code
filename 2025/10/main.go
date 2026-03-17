@@ -16,14 +16,7 @@ func main() {
 }
 
 func solvePart1() {
-	lines := util.ReadInputFile()
-	result := 0
-
-	for _, line := range lines {
-		_ = line // TODO: process each line
-	}
-
-	fmt.Printf("Part 1 result: %d\n", result)
+	fmt.Println(util.GetFewestButtonPressesToCorrectConfig())
 }
 
 func solvePart2() {
